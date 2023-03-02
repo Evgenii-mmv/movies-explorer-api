@@ -1,11 +1,11 @@
 const allowedCors = [
-  'https://mestofront.student.nomoredomains.work',
-  'http://mestofront.student.nomoredomains.work',
   'localhost:3000',
   'localhost:3001',
   'https://localhost:3000',
   'http://localhost:3001',
   'http://51.250.23.70:3000',
+  'http://movies-explorer.diplom.nomoredomains.work:3000',
+  'https://movies-explorer.diplom.nomoredomains.work:3000',
 ];
 
 module.exports = (req, res, next) => {
