@@ -11,7 +11,10 @@ const getMyProfile = (req, res, next) => {
     .then((user) => {
       res.status(CODE.OK).send(userRes(user));
     })
-    .catch((e) => next(e));
+    .catch((e) => {
+      console.log(e);
+      next(e);
+    });
 };
 
 const updateProfile = (req, res, next) => {
