@@ -6,6 +6,8 @@ const allowedCors = [
   'http://51.250.23.70:3000',
   'http://movies-explorer.diplom.nomoredomains.work:3000',
   'https://movies-explorer.diplom.nomoredomains.work:3000',
+  'http://movies-explorer.diplom.nomoredomains.work',
+  'https://movies-explorer.diplom.nomoredomains.work',
 ];
 
 module.exports = (req, res, next) => {
