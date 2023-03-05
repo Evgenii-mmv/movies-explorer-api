@@ -26,6 +26,7 @@ app.post('/signin', validator.validateUserLog(), login);
 app.post('/signup', validator.validateUserReg(), createUser);
 
 app.use(auth);
+app.use('/', require('./routes/noneexistent'));
 app.use('/users', require('./routes/user'));
 app.use('/movies', require('./routes/movie'));
 

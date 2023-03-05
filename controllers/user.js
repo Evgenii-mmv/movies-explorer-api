@@ -4,6 +4,7 @@ const User = require('../models/user');
 const { userRes } = require('../utilits/utilits');
 const { CODE, MESSAGE } = require('../code_answer/code_answer');
 const { BadRequest } = require('../error/badrequest');
+const { ConflictEmail } = require('../error/conflictemail');
 const { JWT_SECRET } = require('../constants/const');
 
 const getMyProfile = (req, res, next) => {
@@ -30,6 +31,9 @@ const updateProfile = (req, res, next) => {
     .then((user) => {
       res.status(CODE.OK).send(userRes(user));
     }).catch((e) => {
+      if (e.code === 11000) {
+        return next(new ConflictEmail(MESSAGE.CONFLICT_EMAIL));
+      }
       if (e.name === 'ValidationError') {
         return next(new BadRequest(MESSAGE.BAD_REQUEST));
       }
@@ -51,8 +55,11 @@ const createUser = (req, res, next) => {
       email,
       password: hash,
     }))
-    .then((user) => res.status(CODE.CREATED).send({ user }))
+    .then((user) => res.status(CODE.CREATED).send(userRes(user)))
     .catch((e) => {
+      if (e.code === 11000) {
+        return next(new ConflictEmail(MESSAGE.CONFLICT_EMAIL));
+      }
       if (e.name === 'ValidationError') {
         return next(new BadRequest(MESSAGE.BAD_REQUEST));
       }
