@@ -51,28 +51,6 @@ const getMovies = (req, res, next) => {
     .catch((e) => next(e));
 };
 
-// const deleteMovie = (req, res, next) => Movie.findOneAndRemove(req.params.id)
-//   .populate('owner')
-//   .then((movie) => {
-//     console.log(req.params.id);
-//     console.log(String(movie.owner._id));
-//     console.log(req.user.id);
-//     if (!movie) {
-//       return next(new NotFoundError(MESSAGE.NOT_FOUND));
-//     }
-//     if (String(movie.owner._id) !== req.user.id) {
-//       return next(new Forbidden(MESSAGE.FORBIDDEN));
-//     }
-//     return res.status(CODE.OK).send({ movie });
-//   })
-//   .catch((e) => {
-//     console.log(e);
-//     if (e.name === 'CastError') {
-//       return next(new CastError(MESSAGE.CAST_ERROR));
-//     }
-//     return next(e);
-//   });
-
 const deleteMovie = (req, res, next) => Movie.findById(req.params.id)
   .populate('owner')
   .then((movie) => {
